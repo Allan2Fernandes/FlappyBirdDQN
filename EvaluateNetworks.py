@@ -7,10 +7,10 @@ import gymnasium
 from Q_Network import Q_Network
 import flappy_bird_gymnasium
 
-models_directory = "C:/Users/Allan/Desktop/Models/FlappyBirdModels"
+models_directory = "C:/Users/Allan/Desktop/Models/FlappyBirdModels2"
 env = gymnasium.make("FlappyBird-v0", audio_on=False, pipe_gap=100)
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-device = torch.device('cpu')
+#device = torch.device('cpu')
 action_size = env.action_space.n
 state_size = env.observation_space.shape[0]
 episodes_to_test = 100

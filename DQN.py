@@ -11,20 +11,20 @@ class DQN:
         self.device = device
         self.state_size = state_size
         self.action_size = action_size
-        self.epsilon = 0.15 # Exploration vs exploitation
+        self.epsilon = 1 # Exploration vs exploitation
         self.epsilon_decay_rate = 0.999
-        self.min_epsilon = 0.005
+        self.min_epsilon = 0.15
         self.gamma = 0.99 # Discount factor
-        self.update_rate = 100
-        self.model_save_rate = 200
+        self.update_rate = 300
+        self.model_save_rate = 1
         self.replay_buffer = deque(maxlen=5000)
         self.main_network = self.build_network().to(device)
         self.target_network = self.build_network().to(device)
         if is_flappyBirdEnv and load_model:
-            self.main_network.load_state_dict(torch.load("C:/Users/Allan/Desktop/Models/FlappyBirdModels/5200.pt"))
-            self.target_network.load_state_dict(torch.load("C:/Users/Allan/Desktop/Models/FlappyBirdModels/5200.pt"))
+            self.main_network.load_state_dict(torch.load("C:/Users/Allan/Desktop/Models/FlappyBirdModels/2200.pt"))
+            self.target_network.load_state_dict(torch.load("C:/Users/Allan/Desktop/Models/FlappyBirdModels/2200.pt"))
         self.target_network.load_state_dict(self.main_network.state_dict())
-        self.optimizer = torch.optim.Adam(self.main_network.parameters(), lr=0.00025)
+        self.optimizer = torch.optim.Adam(self.main_network.parameters(), lr=0.00002)
         self.loss_function = torch.nn.MSELoss()
 
     def build_network(self):

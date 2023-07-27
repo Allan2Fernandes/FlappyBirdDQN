@@ -7,7 +7,7 @@ import gymnasium
 from Q_Network import Q_Network
 import flappy_bird_gymnasium
 
-models_directory = "C:/Users/Allan/Desktop/Models/FlappyBirdModels"
+models_directory = "./models"
 env = gymnasium.make("FlappyBird-v0", audio_on=False, pipe_gap=100)
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 device = torch.device('cpu')
@@ -29,7 +29,7 @@ def get_action(model, state):
         pass
     return Q_values
 
-model_path = os.path.join(models_directory, sys.argv[1])
+model_path = os.path.join(models_directory, "2200_backup_flappy_bird.pt")
 model = Q_Network(device=device, action_space_size=action_size, observation_space_size=state_size).to(device)
 model.load_state_dict(torch.load(model_path))
 for episode in range(episodes_to_test):
